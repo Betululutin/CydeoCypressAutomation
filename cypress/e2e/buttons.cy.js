@@ -40,10 +40,15 @@ describe('Context: My First Tests ',()=>{
      cy.get('button').each((item) => {
         if(item.text()== "Button 4"){
      cy.log(item.text()); //this command write the text at test console
+      //item.lick(); you cannot use cypress click func on jQueary element you need to WRAP IT
+
+      cy.wrap(item).click();
+      cy.contains('Clicked on button four!').should('be.visible');
+
         }
       })
 
-
+       //npx cypress run --headless -b chrome
 
     })
 
